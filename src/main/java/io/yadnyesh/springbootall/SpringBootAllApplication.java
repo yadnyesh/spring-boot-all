@@ -34,12 +34,12 @@ public class SpringBootAllApplication implements CommandLineRunner {
 
 		//jdbcTemplate.update("insert into users(id, name, about) values (10,'Arpita', 'Developer')");
 
-		List<Map<String, Object>> users = jdbcTemplate.queryForList("Select id, name,about from users");
-		users.forEach((item) -> {
-			System.out.println("Id -> " + item.get("id"));
-			System.out.println("Name -> " + item.get("name"));
-			System.out.println("About -> " + item.get("about"));
-			System.out.println("----------------------------");
-		});
+//		List<Map<String, Object>> users = jdbcTemplate.queryForList("Select id, name,about from users");
+//		users.forEach((item) -> {
+//			System.out.println("Id -> " + item.get("id"));
+//			System.out.println("Name -> " + item.get("name"));
+//			System.out.println("About -> " + item.get("about"));
+//			System.out.println("----------------------------");
+//		});
 	}
 }

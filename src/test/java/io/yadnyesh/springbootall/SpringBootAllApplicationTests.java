@@ -41,4 +41,17 @@ class SpringBootAllApplicationTests {
 		});
 	}
 
+	@Test
+	public void workingWithMono() {
+		Mono<String> errorMono = Mono.error(new RuntimeException("User generated error!"));
+
+		Mono<String> learningReactiveWebMono = Mono.just("Learning Reactive Web");
+		Mono.just("Second string");
+
+		learningReactiveWebMono.subscribe(data -> {
+			System.out.println("data is : " + data);
+		});
+		errorMono.subscribe(System.out::println);
+	}
+
 }
