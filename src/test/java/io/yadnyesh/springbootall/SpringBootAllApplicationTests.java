@@ -3,8 +3,11 @@ package io.yadnyesh.springbootall;
 import org.junit.jupiter.api.Test;
 import org.reactivestreams.Subscription;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.relational.core.sql.In;
 import reactor.core.CoreSubscriber;
 import reactor.core.publisher.Mono;
+import reactor.util.function.Tuple2;
+import reactor.util.function.Tuple3;
 
 @SpringBootTest
 class SpringBootAllApplicationTests {
@@ -47,11 +50,20 @@ class SpringBootAllApplicationTests {
 
 		Mono<String> learningReactiveWebMono = Mono.just("Learning Reactive Web");
 		Mono.just("Second string");
+		Mono<String> m1 = Mono.just(" Learning Reactive Web  ");
+		Mono<String> m2 = Mono.just(" Subscribe to Youtube channel  ");
+		Mono<Integer> m3 = Mono.just(170681);
 
-		learningReactiveWebMono.subscribe(data -> {
-			System.out.println("data is : " + data);
+		Mono<Tuple3<String, String, Integer>> combinedMono = Mono.zip(m1, m2, m3);
+
+		combinedMono.subscribe(data -> {System.out.println(data.getT3());
 		});
-		errorMono.subscribe(System.out::println);
+
+
+//		learningReactiveWebMono.subscribe(data -> {
+//			System.out.println("data is : " + data);
+//		});
+//		errorMono.subscribe(System.out::println);
 	}
 
 }
