@@ -56,7 +56,8 @@ class SpringBootAllApplicationTests {
 
 		Mono<Tuple3<String, String, Integer>> combinedMono = Mono.zip(m1, m2, m3);
 
-		combinedMono.subscribe(data -> {System.out.println(data.getT3());
+		combinedMono.subscribe(data -> {
+			System.out.println(data.getT3());
 		});
 
 
