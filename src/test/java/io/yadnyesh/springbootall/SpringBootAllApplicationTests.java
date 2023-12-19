@@ -9,6 +9,7 @@ import reactor.core.publisher.Mono;
 import reactor.util.function.Tuple2;
 import reactor.util.function.Tuple3;
 
+import java.util.Arrays;
 import java.util.Locale;
 
 @SpringBootTest
@@ -56,6 +57,12 @@ class SpringBootAllApplicationTests {
 		Mono<String> resultMono = m1.map(item -> item.toUpperCase(Locale.ROOT));
 		resultMono.subscribe(System.out::println);
 
+		Mono<String[]> resultFlatMapExample = m1.flatMap(valueM1 -> Mono.just(valueM1.split(" ")));
+		resultFlatMapExample.subscribe(data -> {
+			for (String s: data) {
+				System.out.println(s);
+			}
+		});
 	}
 
 }
