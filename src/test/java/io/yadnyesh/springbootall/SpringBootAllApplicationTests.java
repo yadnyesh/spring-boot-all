@@ -10,6 +10,7 @@ import reactor.core.publisher.Mono;
 import reactor.util.function.Tuple2;
 import reactor.util.function.Tuple3;
 
+import java.time.Duration;
 import java.util.Arrays;
 import java.util.Locale;
 
@@ -71,6 +72,23 @@ class SpringBootAllApplicationTests {
 		stringFlux.subscribe(data -> {
 			System.out.println(data);
 		});
+	}
+
+	@Test
+	public void anotherWorkingWithMono() throws InterruptedException {
+		Mono<String> errorMono = Mono.error(new RuntimeException("User generated error!"));
+		Mono<String> m1 = Mono.just("Learning coding with Yadnyesh");
+		Mono<String> m2 = Mono.just("Subscribtion is required");
+		Mono<Integer> m3 = Mono.just(170681);
+
+		System.out.println(Thread.currentThread().getName());
+		Flux<String> stringFlux = m1.concatWith(m2)
+				.delayElements(Duration.ofMillis(2000))
+				.log();
+		stringFlux.subscribe(System.out::println);
+
+		Thread.sleep(4400);
+		System.out.println("------Terminated Main Thread---------");
 	}
 
 }
