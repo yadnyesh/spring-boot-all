@@ -5,6 +5,7 @@ import org.reactivestreams.Subscription;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.relational.core.sql.In;
 import reactor.core.CoreSubscriber;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.util.function.Tuple2;
 import reactor.util.function.Tuple3;
@@ -62,6 +63,13 @@ class SpringBootAllApplicationTests {
 			for (String s: data) {
 				System.out.println(s);
 			}
+		});
+
+		System.out.println("-------------------------------");
+
+		Flux<String> stringFlux = m1.flatMapMany(valueM1 -> Flux.just(valueM1.split(" "))).log();
+		stringFlux.subscribe(data -> {
+			System.out.println(data);
 		});
 	}
 
