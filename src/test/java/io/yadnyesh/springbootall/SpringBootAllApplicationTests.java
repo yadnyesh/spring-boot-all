@@ -9,6 +9,8 @@ import reactor.core.publisher.Mono;
 import reactor.util.function.Tuple2;
 import reactor.util.function.Tuple3;
 
+import java.util.Locale;
+
 @SpringBootTest
 class SpringBootAllApplicationTests {
 
@@ -47,24 +49,13 @@ class SpringBootAllApplicationTests {
 	@Test
 	public void workingWithMono() {
 		Mono<String> errorMono = Mono.error(new RuntimeException("User generated error!"));
-
-		Mono<String> learningReactiveWebMono = Mono.just("Learning Reactive Web");
-		Mono.just("Second string");
-		Mono<String> m1 = Mono.just(" Learning Reactive Web  ");
-		Mono<String> m2 = Mono.just(" Subscribe to Youtube channel  ");
+		Mono<String> m1 = Mono.just("Learning coding with Yadnyesh");
+		Mono<String> m2 = Mono.just("Subscribtion is required");
 		Mono<Integer> m3 = Mono.just(170681);
 
-		Mono<Tuple3<String, String, Integer>> combinedMono = Mono.zip(m1, m2, m3);
+		Mono<String> resultMono = m1.map(item -> item.toUpperCase(Locale.ROOT));
+		resultMono.subscribe(System.out::println);
 
-		combinedMono.subscribe(data -> {
-			System.out.println(data.getT3());
-		});
-
-
-//		learningReactiveWebMono.subscribe(data -> {
-//			System.out.println("data is : " + data);
-//		});
-//		errorMono.subscribe(System.out::println);
 	}
 
 }
