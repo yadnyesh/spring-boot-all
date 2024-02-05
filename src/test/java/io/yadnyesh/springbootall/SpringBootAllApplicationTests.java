@@ -77,7 +77,7 @@ class SpringBootAllApplicationTests {
 	@Test
 	public void anotherWorkingWithMono() throws InterruptedException {
 		Mono<String> errorMono = Mono.error(new RuntimeException("User generated error!"));
-		Mono<String> m1 = Mono.just("Learning coding with Yadnyesh");
+		Mono<String> m1 = Mono.just("Learning coding Mono and Flux");
 		Mono<String> m2 = Mono.just("Subscribtion is required");
 		Mono<Integer> m3 = Mono.just(170681);
 
